@@ -1,0 +1,22 @@
+<form [formGroup]="form" >
+<p>
+  <span matBadge="4" matBadgeOverlap="false">Status: </span>
+</p>
+    <mat-form-field class="full-width">
+        <input type="text" placeholder="Select Status" matInput formControlName="status" [matAutocomplete]="statusAutoComplete">
+        <mat-autocomplete #statusAutoComplete="matAutocomplete" [displayWith]="displayWith">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+                {{ status.name }}
+            </mat-option>
+        </mat-autocomplete>
+
+        <mat-error *ngIf="form.controls['status'].hasError('required')">
+            Please enter a value
+        </mat-error>
+
+        <mat-error *ngIf="form.controls['status'].hasError('incorrect')">
+            Please select a valid status
+        </mat-error>
+    </mat-form-field>
+   
+</form>
